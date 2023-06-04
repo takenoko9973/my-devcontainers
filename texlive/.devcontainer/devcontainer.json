@@ -1,0 +1,108 @@
+{
+    "name": "texlive",
+    "dockerFile": "DockerFile",
+    // "image": "takenokoya9973/alpine-texlive-custom:latest",
+    "customizations": {
+        // VSCodeや拡張機能の設定
+        "vscode": {
+            // 設定（コンテナ内全体で有効）
+            "settings": {
+                // ここに設定を記述
+                // 日本語文書特有の LaTeX Font Warning を警告表示に含めないようにする
+                "latex-workshop.message.latexlog.exclude": [
+                    "(Font shape `(JY1|JT1|JY2|JT2)(/.*)(sl|it|sc)'.*|Some font shapes were not available.*)",
+                    "Font shape `(OT1|OML|OMS)(/.*)(n|it)'.*"
+                ],
+                "[tex][latex][bibtex]": {
+                    "editor.formatOnSave": false,
+                    // スニペット補完中にも補完を使えるようにする
+                    "editor.suggest.snippetsPreventQuickSuggestions": false,
+                    // インデント幅を2にする
+                    "editor.tabSize": 2,
+                    // 単語単位での移動を行う場合の区切り文字を指定
+                    // 日本語文書で単語移動を使うため、助詞や読点、括弧を区切り文字として指定する
+                    "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?　、。「」【】『』（）！？てにをはがのともへでや"
+                },
+                // 使用パッケージのコマンドや環境の補完を有効にする
+                "latex-workshop.intellisense.package.enabled": true,
+                // subfileを作成するか
+                "latex-workshop.latex.rootFile.useSubFile": true,
+                "latex-workshop.latex.rootFile.doNotPrompt": true,
+                // dockerを使ったlatex作成
+                "latex-workshop.docker.enabled": false,
+                "latex-utilities.countWord.docker.enabled": false,
+                // 一時ファイルのクリーンアップを行うかどうか
+                "latex-workshop.latex.autoClean.run": "onBuilt",
+                // 生成ファイルを削除するときに対象とするファイル
+                "latex-workshop.latex.clean.fileTypes": [
+                    "*.aux",
+                    "*.bbl",
+                    // "*.blg", // BibTeX のログファイル
+                    "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.fls",
+                    // "*.log", // LaTeX のログファイル
+                    "*.fdb_latexmk", "*.snm", "*.synctex(busy)", "*.synctex.gz(busy)", "*.nav"
+                ],
+                // ファイルの保存時に自動的にビルドを行うかどうか
+                "latex-workshop.latex.autoBuild.run": "never",
+                // ビルドのレシピに使われるパーツ
+                "latex-workshop.latex.tools": [
+                    // latexmk を利用した lualatex によるビルドコマンド
+                    {
+                        "name": "Latexmk (LuaLaTeX)",
+                        "command": "latexmk",
+                        "args": [
+                            "-f",
+                            "-gg",
+                            "-pv",
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-shell-escape",
+                            "-lualatex",
+                            "%DOCFILE%"
+                        ]
+                    }
+                ],
+                // ビルドのレシピ
+                "latex-workshop.latex.recipes": [
+                    // LuaLaTeX で書かれた文書のビルドレシピ
+                    {
+                        "name": "LuaLaTeX",
+                        "tools": [
+                            "Latexmk (LuaLaTeX)"
+                        ]
+                    }
+                ],
+                "latex-workshop.latex.magic.args": [
+                    "-f",
+                    "-gg",
+                    "-pv",
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "%DOC%"
+                ],
+                "latex-workshop.latex.recipe.default": "LuaLaTeX",
+                // PDF ビューアの開き方
+                "latex-workshop.view.pdf.viewer": "tab",
+                // SyncTeX
+                "latex-workshop.synctex.path": "synctex",
+                "latex-workshop.synctex.afterBuild.enabled": true,
+                "latex-workshop.synctex.synctexjs.enabled": true,
+                // Internal PDF Viewer Settings
+                "latex-workshop.view.pdf.zoom": "page-width",
+                "japanese-proofreading.textlint.ハイフン(-)": false
+            },
+            // 拡張機能（コンテナ内全体で有効）
+            "extensions": [
+                "tecosaur.latex-utilities",
+                "James-Yu.latex-workshop",
+                "ICS.japanese-proofreading",
+                "mammothb.gnuplot",
+                "GrapeCity.gc-excelviewer"
+            ]
+        }
+    },
+    // setup mamba
+    "postCreateCommand": []
+}
