@@ -15,6 +15,12 @@
                 ],
                 "[tex][latex][bibtex]": {
                     "editor.formatOnSave": false,
+                    // 基本ASCII以外の文字列で警告表示が出ないように
+                    "editor.unicodeHighlight.ambiguousCharacters": false,
+                    "editor.unicodeHighlight.includeComments": false,
+                    "editor.unicodeHighlight.includeStrings": false,
+                    "editor.unicodeHighlight.invisibleCharacters": true,
+                    "editor.unicodeHighlight.nonBasicASCII": false,
                     // スニペット補完中にも補完を使えるようにする
                     "editor.suggest.snippetsPreventQuickSuggestions": false,
                     // インデント幅を2にする
@@ -38,9 +44,25 @@
                     "*.aux",
                     "*.bbl",
                     // "*.blg", // BibTeX のログファイル
-                    "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.fls",
+                    "*.idx",
+                    "*.ind",
+                    "*.lof",
+                    "*.lot",
+                    "*.out",
+                    "*.toc",
+                    "*.acn",
+                    "*.acr",
+                    "*.alg",
+                    "*.glg",
+                    "*.glo",
+                    "*.gls",
+                    "*.fls",
                     // "*.log", // LaTeX のログファイル
-                    "*.fdb_latexmk", "*.snm", "*.synctex(busy)", "*.synctex.gz(busy)", "*.nav"
+                    "*.fdb_latexmk",
+                    "*.snm",
+                    "*.synctex(busy)",
+                    "*.synctex.gz(busy)",
+                    "*.nav"
                 ],
                 // ファイルの保存時に自動的にビルドを行うかどうか
                 "latex-workshop.latex.autoBuild.run": "never",
@@ -103,6 +125,5 @@
             ]
         }
     },
-    // setup mamba
     "postCreateCommand": []
 }
