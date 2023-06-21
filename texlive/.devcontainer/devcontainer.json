@@ -7,10 +7,12 @@
             // 設定（コンテナ内全体で有効）
             "settings": {
                 // ここに設定を記述
-                // 日本語文書特有の LaTeX Font Warning を警告表示に含めないようにする
                 "latex-workshop.message.latexlog.exclude": [
+                    // 日本語文書特有の LaTeX Font Warning を警告表示に含めないようにする
                     "(Font shape `(JY1|JT1|JY2|JT2)(/.*)(sl|it|sc)'.*|Some font shapes were not available.*)",
-                    "Font shape `(OT1|OML|OMS)(/.*)(n|it)'.*"
+                    "Font shape `(OT1|OML|OMS)(/.*)(n|it)'.*",
+                    // siunitxとphysicsのqty衝突問題を握りつぶす
+                    "Detected the \"physics\" package:"
                 ],
                 "[tex][latex][bibtex]": {
                     "editor.formatOnSave": false,
