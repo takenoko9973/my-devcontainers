@@ -1,10 +1,9 @@
-FROM takenokoya9973/alpine-texlive-base:latest
+FROM takenokoya9973/debian-texlive-base:latest
 
 RUN tlmgr update --self --all
 
-COPY .latexmkrc /usr
+COPY .latexmkrc /root
 COPY defaultSettings.yaml /usr/local/texlive/${TEXLIVE_VERSION}/texmf-dist/scripts/latexindent
-COPY bib /usr/local/texlive/texmf-local/bibtex/bib/local
 
 RUN mktexlsr
 
