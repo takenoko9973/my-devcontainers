@@ -6,6 +6,7 @@
         "vscode": {
             // 設定（コンテナ内全体で有効）
             "settings": {
+                "latex-utilities.message.update.show": false,
                 // ここに設定を記述
                 "latex-workshop.message.latexlog.exclude": [
                     // 日本語文書特有の LaTeX Font Warning を警告表示に含めないようにする
@@ -22,8 +23,8 @@
                     "editor.unicodeHighlight.includeStrings": false,
                     "editor.unicodeHighlight.invisibleCharacters": true,
                     "editor.unicodeHighlight.nonBasicASCII": false,
-                    // スニペット補完中にも補完を使えるようにする
-                    "editor.suggest.snippetsPreventQuickSuggestions": false,
+                    // サジェストにtextを追加
+                    "editor.suggest.showWords": true,
                     // インデント幅を2にする
                     "editor.tabSize": 2,
                     // 単語単位での移動を行う場合の区切り文字を指定
@@ -115,6 +116,7 @@
                 // Internal PDF Viewer Settings
                 "latex-workshop.view.pdf.zoom": "page-width",
                 "latex-utilities.texdef.enabled": false,
+                "latex-utilities.countWord.format": "${wordsBody} Words",
                 "japanese-proofreading.textlint.ハイフン(-)": false
             },
             // 拡張機能（コンテナ内全体で有効）
