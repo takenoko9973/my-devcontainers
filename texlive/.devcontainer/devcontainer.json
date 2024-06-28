@@ -117,7 +117,11 @@
                 "latex-workshop.view.pdf.zoom": "page-width",
                 "latex-utilities.texdef.enabled": false,
                 "latex-utilities.countWord.format": "${wordsBody} Words",
-                "japanese-proofreading.textlint.ハイフン(-)": false
+                "japanese-proofreading.textlint.ハイフン(-)": false,
+                // gnuplot用
+                "code-runner.executorMap": {
+                    "(.plt|.gnu)": "gnuplot $fullFileName"
+                }
             },
             // 拡張機能（コンテナ内全体で有効）
             "extensions": [
@@ -125,9 +129,13 @@
                 "James-Yu.latex-workshop",
                 "ICS.japanese-proofreading",
                 "mammothb.gnuplot",
-                "GrapeCity.gc-excelviewer"
+                "GrapeCity.gc-excelviewer",
+                "formulahendry.code-runner",
+                "ShahilKumar.docxreader",
+                "intellsmi.comment-translate",
+                "yzhang.markdown-all-in-one",
+                "DavidAnson.vscode-markdownlint"
             ]
         }
-    },
-    "postCreateCommand": []
+    }
 }
