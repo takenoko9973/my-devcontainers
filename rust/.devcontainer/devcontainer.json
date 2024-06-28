@@ -1,0 +1,35 @@
+{
+    "name": "rust-genshin-dl-map",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "rust",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.watcherExclude": {
+                    "**/target/**": true
+                },
+                "[rust]": {
+                    "editor.formatOnSave": true
+                },
+                "rust-analyzer.checkOnSave": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.check.extraArgs": [
+                    "--",
+                    "-A",
+                    "clippy::needless_return"
+                ]
+            },
+            "extensions": [
+                "vadimcn.vscode-lldb",
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
+                "serayuzgur.crates",
+                "GitHub.vscode-pull-request-github",
+                "donjayamanne.githistory"
+            ]
+        }
+    }
+}
