@@ -1,0 +1,37 @@
+services:
+    plantuml:
+        build:
+            context: .
+            dockerfile: .devcontainer/Dockerfile
+        init: true
+        container_name: plantuml
+        working_dir: /workspace
+        volumes:
+            - ./:/workspace
+        ports:
+            - "8080:8080"
+        networks:
+            # ネットワーク hoge-group に登録
+            hoge-group:
+                ipv4_address: 172.22.0.2
+        tty: true
+
+    # plantumlサーバー
+    plantuml-server:
+        image: plantuml/plantuml-server
+        container_name: plantuml-server
+        ports:
+            - 8081:8080
+        networks:
+            # ネットワーク hoge-group に登録
+            hoge-group:
+                ipv4_address: 172.22.0.3
+
+networks:
+    # ネットワーク hoge-group の設定
+    hoge-group:
+        external: true
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.22.0.0/16

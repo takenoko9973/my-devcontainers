@@ -1,0 +1,17 @@
+{
+    "name": "plantuml",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "plantuml",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "plantuml.render": "PlantUMLServer",
+                "plantuml.server": "http://172.22.0.3:8080"
+            },
+            "extensions": []
+        }
+    }
+}
