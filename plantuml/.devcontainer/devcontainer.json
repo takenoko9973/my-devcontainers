@@ -13,5 +13,6 @@
             },
             "extensions": []
         }
-    }
+    },
+    "initializeCommand": "docker network inspect hoge-group || docker network create hoge-group"
 }
