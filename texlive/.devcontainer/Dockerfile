@@ -13,3 +13,5 @@ RUN tlmgr update --self --all; mktexlsr; \
     apt-get install ./pandoc*.deb; \
     apt-get clean; \
     rm ./pandoc*.deb;
+
+WORKDIR /workspace
