@@ -1,0 +1,47 @@
+{
+    "name": "python-mamba",
+    "dockerFile": "DockerFile",
+    "init": true,
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/opt/conda/envs/CreatedEnv/bin/python",
+                "python.terminal.activateEnvironment": true,
+                "[python]": {
+                    "editor.formatOnPaste": true,
+                    "editor.defaultFormatter": "ms-python.black-formatter",
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll": "explicit"
+                    }
+                },
+                "ruff.lint.args": [
+                    "--select=E,W,F,B,I,N,A,UP,C4,PL,PD,NPY,C90,COM",
+                    "--ignore=F401,N816,E402,B018",
+                    "--line-length=120"
+                ]
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "charliermarsh.ruff",
+                "KevinRose.vsc-python-indent",
+                "njpwerner.autodocstring",
+                "ms-python.isort",
+                "ms-toolsai.jupyter",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "VisualStudioExptTeam.intellicode-api-usage-examples",
+                "yzhang.markdown-all-in-one",
+                "DavidAnson.vscode-markdownlint"
+            ]
+        }
+    },
+    "features": {
+        // Mambaforge
+        "ghcr.io/rocker-org/devcontainer-features/miniforge:latest": {
+            "version": "latest",
+            "variant": "Mambaforge"
+        }
+    },
+    "postCreateCommand": "/bin/bash ${containerWorkspaceFolder}/.devcontainer/setup.sh"
+}
