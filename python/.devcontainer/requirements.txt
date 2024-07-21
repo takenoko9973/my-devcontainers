@@ -3,7 +3,7 @@ python==3.8.13
 ruff
 black
 
-jupyterlab==3.6.3
+jupyter
 
 numpy
 scipy
