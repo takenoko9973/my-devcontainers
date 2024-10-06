@@ -1,0 +1,11 @@
+{
+    "name": "node18",
+    "dockerFile": "Dockerfile",
+    "init": true,
+    "customizations": {
+        "vscode": {
+            "extensions": []
+        }
+    }
+    // "postCreateCommand": "yarn install"
+}
