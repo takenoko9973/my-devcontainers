@@ -1,0 +1,16 @@
+{
+    "name": "typst",
+    "dockerFile": "./Dockerfile",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "GitHub.vscode-pull-request-github",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+                "myriad-dreamin.tinymist",
+                "surv.typst-math"
+            ]
+        }
+    }
+}
