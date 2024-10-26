@@ -1,0 +1,15 @@
+services:
+    node18:
+        build:
+            context: .
+            dockerfile: .devcontainer/Dockerfile
+        init: true
+        container_name: node18
+        working_dir: /workspace
+        volumes:
+            - ./:/workspace
+            - node-modules:/workspace/node_modules
+        tty: true
+
+volumes:
+    node-modules:

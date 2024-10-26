@@ -1,9 +1,18 @@
 {
     "name": "node18",
-    "dockerFile": "Dockerfile",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "workspaceFolder": "workspace",
+    "service": "node18",
     "init": true,
     "customizations": {
         "vscode": {
+            "settings": {
+                "files.watcherExclude": {
+                    "**/node_modules/**": true
+                }
+            },
             "extensions": []
         }
     }
