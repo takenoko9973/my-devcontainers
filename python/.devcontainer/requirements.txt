@@ -1,7 +1,7 @@
 python==3.8.*
 
 ruff
-black
+mypy
 
 jupyter
 

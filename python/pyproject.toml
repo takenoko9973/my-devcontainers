@@ -1,0 +1,55 @@
+[tool.ruff]
+target-version = "py312"
+
+line-length=100
+
+[tool.ruff.lint]
+# チェックするエラー
+select = [
+    "ALL"
+]
+# 除外するエラー
+ignore = [
+    "ANN101", # missing-type-self: selfの型を省略するため
+    "ANN102", # missing-type-cls: clsの型を省略するため
+    "ANN002", # missing-type-args
+    "ANN003", # missing-type-kwargs
+    "COM812", # 末尾のカンマを必須としない
+    "INP001", # __init__.pyを必須としない
+    "T20",  # flake8-print
+    "D",  # docstring除外する
+]
+# 警告はするが、自動修正はしないエラー
+unfixable = [
+    "F401",  # 使用していないモジュールの自動削除停止
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-third-party = ["fastapi", "pydantic", "starlette"]
+
+[tool.ruff.pylint]
+max-args = 10
+
+[tool.mypy]
+python_version = "3.12"
+
+show_error_context = true  # エラー時のメッセージを詳細表示
+show_column_numbers = true  # エラー発生箇所の行数/列数を表示
+disallow_untyped_defs = true  # 関数定義の引数/戻り値に型アノテーション必須
+no_implicit_optional = true  # デフォルト引数に None を取る場合型アノテーションに Optional 必須
+check_untyped_defs = true  # 型注釈がない関数やメソッドに対して型チェックを行う
+warn_redundant_casts = true  # 冗長なキャストに警告
+
+[[tool.mypy.overrides]]
+# サードパーティの[import-untyped]を無視する
+module = [
+    'requests/*',
+    'psutil',
+]
+ignore_missing_imports = true
