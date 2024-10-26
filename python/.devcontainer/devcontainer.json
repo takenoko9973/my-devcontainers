@@ -36,12 +36,24 @@
             ]
         }
     },
-    "features": {
-        // Mambaforge
-        "ghcr.io/rocker-org/devcontainer-features/miniforge:latest": {
-            "version": "latest",
-            "variant": "Mambaforge"
+    // WSLg設定 : matplotlib表示用
+    "mounts": [
+        {
+            "source": "/run/desktop/mnt/host/wslg/.X11-unix",
+            "target": "/tmp/.X11-unix",
+            "type": "bind"
+        },
+        {
+            "source": "/run/desktop/mnt/host/wslg",
+            "target": "/mnt/wslg",
+            "type": "bind"
         }
-    },
-    "postCreateCommand": "/bin/bash ${containerWorkspaceFolder}/.devcontainer/setup.sh"
+    ],
+    "containerEnv": {
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "QT_QPA_PLATFORM": "xcb",
+        "XDG_RUNTIME_DIR": "/mnt/wslg/runtime-dir",
+        "PULSE_SERVER": "/mnt/wslg/PulseServer"
+    }
 }
