@@ -30,8 +30,7 @@
                 "njpwerner.autodocstring",
                 "ms-toolsai.jupyter",
                 "VisualStudioExptTeam.vscodeintellicode",
-                "VisualStudioExptTeam.intellicode-api-usage-examples",
-                "ms-python.mypy-type-checker"
+                "VisualStudioExptTeam.intellicode-api-usage-examples"
             ]
         }
     },
