@@ -1,6 +1,7 @@
 python==3.12.*
 
 ruff
+mypy
 
 jupyter
 
