@@ -1,5 +1,7 @@
+python==3.12.*
+
 ruff
-black
+mypy
 
 jupyter
 
@@ -16,3 +18,12 @@ seaborn
 
 graphviz
 python-graphviz
+
+# pytorch関連
+pytorch
+torchvision
+torchaudio
+pytorch-cuda==12.4
+
+skorch
+botorch
