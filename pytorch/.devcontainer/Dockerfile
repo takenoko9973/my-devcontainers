@@ -17,5 +17,5 @@ COPY ./requirements.txt /tmp/
 
 RUN mamba init; \
     mamba update --all -qy; \
-    mamba install --file ./requirements.txt -qy; \
+    mamba install --file ./requirements.txt -qy -c pytorch -c nvidia -c gpytorch; \
     mamba clean -qafy;
