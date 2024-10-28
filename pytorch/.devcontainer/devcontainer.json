@@ -24,9 +24,6 @@
                 },
                 "ruff.lint.args": [
                     "--config=pyproject.toml"
-                ],
-                "mypy-type-checker.args": [
-                    "--config=pyproject.toml"
                 ]
             },
             "extensions": [
