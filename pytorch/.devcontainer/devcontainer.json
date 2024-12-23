@@ -11,7 +11,7 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "python.defaultInterpreterPath": "/opt/conda/bin/python",
+                "python.defaultInterpreterPath": "/home/user/micromamba/bin/python",
                 "python.terminal.activateEnvironment": true,
                 "[python]": {
                     "editor.formatOnPaste": true,
@@ -33,12 +33,18 @@
                 "njpwerner.autodocstring",
                 "ms-toolsai.jupyter",
                 "VisualStudioExptTeam.vscodeintellicode",
-                "VisualStudioExptTeam.intellicode-api-usage-examples"
+                "VisualStudioExptTeam.intellicode-api-usage-examples",
+                "ms-toolsai.datawrangler"
             ]
         }
     },
     // WSLg設定 : matplotlib表示用
     "mounts": [
+        {
+            "source": "pytorch-ml_data",
+            "target": "${containerWorkspaceFolder}/data",
+            "type": "volume"
+        },
         {
             "source": "/run/desktop/mnt/host/wslg/.X11-unix",
             "target": "/tmp/.X11-unix",
