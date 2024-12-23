@@ -1,37 +1,54 @@
+# https://github.com/anibali/docker-pytorch/tree/master
+
+FROM ubuntu:22.04 as installer
+
+# Remove any third-party apt sources to avoid issues with expiring keys.
+RUN rm -f /etc/apt/sources.list.d/*.list
+
+# Install some basic utilities.
+RUN apt-get update && apt-get install -y \
+        curl \
+        ca-certificates \
+        bzip2 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download and install Micromamba.
+RUN curl -sL https://micro.mamba.pm/api/micromamba/linux-64/latest \
+    | tar -xvj -C /usr/local bin/micromamba
+
+# ==================================================
+
 FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
-ARG MINIFORGE_NAME=Miniforge3
-ARG MINIFORGE_VERSION=24.7.1-2
-ARG CONDA_ENV_NAME=my_env
-
-ENV CONDA_DIR=/opt/conda
-ENV LANG=ja_JP.UTF-8
-ENV PATH=${CONDA_DIR}/bin:${PATH}
+RUN rm -f /etc/apt/sources.list.d/*.list
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install --no-install-recommends -y \
-        wget \
-        bzip2 \
-        ca-certificates \
-        git && \
+        git \
+        p7zip-full && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    wget --no-hsts --quiet https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/${MINIFORGE_NAME}-${MINIFORGE_VERSION}-Linux-$(uname -m).sh -O /tmp/miniforge.sh && \
-    /bin/bash /tmp/miniforge.sh -b -p ${CONDA_DIR} && \
-    rm /tmp/miniforge.sh && \
-    conda update -n base -c defaults conda && \
-    conda clean --tarballs --index-cache --packages -y && \
-    find ${CONDA_DIR} -follow -type f -name '*.a' -delete && \
-    find ${CONDA_DIR} -follow -type f -name '*.pyc' -delete && \
-    conda clean --force-pkgs-dirs --all -y
+    rm -rf /var/lib/apt/lists/*
 
-COPY ./requirements.txt /tmp/
+# Create a working directory.
+RUN mkdir /app
+WORKDIR /app
 
-RUN conda install mamba -qy && \
-    mamba init && \
-    mamba create -n ${CONDA_ENV_NAME} --file /tmp/requirements.txt -qy -c pytorch -c nvidia -c gpytorch && \
-    mamba clean -qafy && \
-    rm /tmp/requirements.txt && \
-    echo ". ${CONDA_DIR}/etc/profile.d/conda.sh && conda activate ${CONDA_ENV_NAME}" >> /etc/skel/.bashrc && \
-    echo ". ${CONDA_DIR}/etc/profile.d/conda.sh && conda activate ${CONDA_ENV_NAME}" >> ~/.bashrc
+COPY --from=installer /usr/local/bin/micromamba /usr/local/bin/micromamba
+ENV MAMBA_EXE=/usr/local/bin/micromamba \
+    MAMBA_ROOT_PREFIX=/home/user/micromamba \
+    CONDA_PREFIX=/home/user/micromamba \
+    PATH=/home/user/micromamba/bin:$PATH
+
+# Set up the base Conda environment by installing PyTorch and friends.
+COPY ./environment.yml /app/
+RUN micromamba create -qy -n base -f /app/environment.yml \
+    && rm -f /app/environment.yml \
+    && micromamba shell init --shell=bash \
+    && micromamba clean -qya
+
+# # Fix for https://github.com/pytorch/pytorch/issues/97041
+RUN ln -s "$CONDA_PREFIX/lib/libnvrtc.so.*.*.*" "$CONDA_PREFIX/lib/libnvrtc.so"
+
+CMD ["bash"]
