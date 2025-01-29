@@ -1,0 +1,5 @@
+rules:
+    - pattern: 基盤
+      expected: 基板
+    - pattern: 超電導
+      expected: 超伝導

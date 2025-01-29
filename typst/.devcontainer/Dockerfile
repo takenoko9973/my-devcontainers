@@ -1,13 +1,11 @@
 FROM ghcr.io/typst/typst:latest
 
-RUN apt-get update; \
-    apt-get install -y \
+RUN apk update;\
+    apk add --no-cache  \
         git \
-        pkg-config \
-        libssl-dev \
+        npm \
         ; \
-    apt-get clean; \
-    rm -rf /var/lib/apt/lists/*;
+    npm install -g pnpm;
 
 # 日本語フォント(原ノ味フォント)導入
 ARG FONT_FOLDER="/root/fonts"
