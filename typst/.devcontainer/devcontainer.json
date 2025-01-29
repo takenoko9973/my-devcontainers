@@ -5,12 +5,27 @@
         "vscode": {
             "settings": {},
             "extensions": [
-                "GitHub.vscode-pull-request-github",
                 "mhutchie.git-graph",
                 "donjayamanne.githistory",
                 "myriad-dreamin.tinymist",
-                "surv.typst-math"
+                "surv.typst-math",
+                "mammothb.gnuplot",
+                "mhutchie.git-graph",
+                "taichi.vscode-textlint"
             ]
         }
-    }
+    },
+    "mounts": [
+        {
+            "source": "paper_node_module",
+            "target": "${containerWorkspaceFolder}/node_modules",
+            "type": "volume"
+        },
+        {
+            "source": "paper_pnpm-store",
+            "target": "${containerWorkspaceFolder}/.pnpm-store",
+            "type": "volume"
+        }
+    ],
+    "postCreateCommand": "pnpm i"
 }
