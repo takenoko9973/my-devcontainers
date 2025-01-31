@@ -3,7 +3,28 @@
     "dockerFile": "./Dockerfile",
     "customizations": {
         "vscode": {
-            "settings": {},
+            "settings": {
+                "[typst]": {
+                    "editor.formatOnSave": false,
+                    // 基本ASCII以外の文字列で警告表示が出ないように
+                    "editor.unicodeHighlight.ambiguousCharacters": false,
+                    "editor.unicodeHighlight.includeComments": false,
+                    "editor.unicodeHighlight.includeStrings": false,
+                    "editor.unicodeHighlight.invisibleCharacters": true,
+                    "editor.unicodeHighlight.nonBasicASCII": false,
+                    "editor.semanticHighlighting.enabled": true,
+                    // サジェストにtextを追加
+                    "editor.suggest.showWords": true,
+                    // インデント幅を2にする
+                    "editor.tabSize": 2,
+                    "editor.inlayHints.enabled": "on",
+                    "editor.defaultFormatter": "myriad-dreamin.tinymist",
+                    // 単語単位での移動を行う場合の区切り文字を指定
+                    // 日本語文書で単語移動を使うため、助詞や読点、括弧を区切り文字として指定する
+                    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?　、。「」【】『』（）！？てにをはがのともへでや"
+                },
+                "tinymist.formatterMode": "typstyle"
+            },
             "extensions": [
                 "mhutchie.git-graph",
                 "donjayamanne.githistory",
