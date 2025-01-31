@@ -16,6 +16,7 @@
                         "source.organizeImports": "explicit"
                     }
                 },
+                "jupyter.notebookFileRoot": "${workspaceFolder}",
                 "ruff.lint.args": [
                     "--config=pyproject.toml"
                 ]
