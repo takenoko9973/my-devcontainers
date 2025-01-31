@@ -1,4 +1,4 @@
-#import "../const.typ": fontsize
+#import "./const.typ": fontsize
 
 #let layout(
   title: [],
@@ -30,7 +30,7 @@
   set par(
     // 文章コンテンツの設定
     first-line-indent: 1em,
-    spacing: 0.65em,
+    spacing: 1em,
     leading: 1em,
     justify: true,
   )
@@ -53,6 +53,9 @@
 
   // 章の見出し
   show heading.where(level: 1): it => {
+    // 章ごとに改ページ
+    pagebreak(weak: true)
+
     // 図表番号をリセット
     counter(figure.where(kind: image)).update(0)
     counter(figure.where(kind: table)).update(0)
@@ -76,7 +79,7 @@
 
     it.body
 
-    v(5%)
+    v(3%)
   }
 
   // 節の見出し
@@ -195,6 +198,9 @@
     it
   }
   set outline(depth: 3)
+
+  // 参考文献のスタイルを設定
+  show bibliography: set heading(level: 2)
 
   // 脚注のスタイルを設定
   set footnote(numbering: sym.dagger + "1")
