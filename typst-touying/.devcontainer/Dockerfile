@@ -28,6 +28,14 @@ RUN apk update;\
         ; \
     npm install -g pnpm;
 
+ENV VENV_PATH=/opt/venv
+ENV PATH="$VENV_PATH/bin:$PATH"
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN python3 -m venv $VENV_PATH; \
+    pip install --no-cache-dir -r /tmp/requirements.txt; \
+    rm /tmp/requirements.txt
 
 # 日本語フォント(原ノ味フォント)導入
 ARG FONT_FOLDER="/usr/share/fonts"
