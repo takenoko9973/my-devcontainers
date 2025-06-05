@@ -1,6 +1,10 @@
 {
-    "name": "typst",
+    "name": "typst-touying",
     "dockerFile": "./Dockerfile",
+    "runArgs": [
+        "--name",
+        "typst-touying"
+    ],
     "customizations": {
         "vscode": {
             "settings": {
@@ -24,9 +28,13 @@
                     "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?　、。「」【】『』（）！？てにをはがのともへでや"
                 },
                 "tinymist.formatterMode": "typstyle",
+                "textlint.autoFixOnSave": true,
                 "textlint.languages": [
                     "typst"
-                ]
+                ],
+                "code-runner.executorMap": {
+                    "typst": "touying compile $dir$fileName --root $workspaceRoot --ppi 220 --format pptx"
+                }
             },
             "extensions": [
                 "mhutchie.git-graph",
@@ -37,7 +45,9 @@
                 "mhutchie.git-graph",
                 "3w36zj6.textlint",
                 "formulahendry.code-runner",
-                "analytic-signal.preview-tiff"
+                "analytic-signal.preview-tiff",
+                "ms-python.python",
+                "charliermarsh.ruff"
             ]
         }
     },
