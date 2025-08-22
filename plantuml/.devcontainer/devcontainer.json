@@ -9,12 +9,12 @@
         "vscode": {
             "settings": {
                 "plantuml.render": "PlantUMLServer",
-                "plantuml.server": "http://172.22.0.3:8080"
+                "plantuml.server": "http://plantuml-server:8080"
             },
             "extensions": [
                 "jebbs.plantuml"
             ]
         }
     },
-    "initializeCommand": "docker network inspect hoge-group || docker network create hoge-group"
+    "initializeCommand": "docker network inspect app-network || docker network create app-network"
 }
