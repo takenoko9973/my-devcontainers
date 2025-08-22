@@ -3,6 +3,7 @@
     "dockerComposeFile": [
         "../docker-compose.yml"
     ],
+    "init": true,
     "service": "gas-project",
     "workspaceFolder": "/workspace",
     "customizations": {
@@ -44,5 +45,8 @@
                 "mhutchie.git-graph"
             ]
         }
-    }
+    },
+    "mounts": [
+        "source=${localEnv:USERPROFILE}/.clasprc.json,target=/root/.clasprc.json,type=bind,consistency=cached"
+    ]
 }
