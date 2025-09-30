@@ -1,7 +1,7 @@
 #import "@preview/physica:0.9.2": *
 
-#import "templates/commands.typ": *
-#import "templates/paper.typ": *
+#import "/.style/commands.typ": *
+#import "/.style/paper.typ": *
 
 #show: layout.with(
   title: "題目",
@@ -23,7 +23,7 @@
 $
   integral_0^1 sin(theta) cos(theta) thin d theta\
   integral_0^1 sin(x)\
-  dv(f,v) \
+  dv(f, v) \
   #qty(10, "eV")
 $
 
