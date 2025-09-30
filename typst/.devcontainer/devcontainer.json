@@ -24,18 +24,21 @@
                     "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?　、。「」【】『』（）！？てにをはがのともへでや"
                 },
                 "tinymist.formatterMode": "typstyle",
+                "textlint.autoFixOnSave": true,
                 "textlint.languages": [
                     "typst"
-                ]
+                ],
+                "typst-math.renderingMode": "nothing"
             },
             "extensions": [
-                "mhutchie.git-graph",
-                "donjayamanne.githistory",
                 "myriad-dreamin.tinymist",
                 "surv.typst-math",
-                "mammothb.gnuplot",
+                "3w36zj6.textlint",
+                "fill-labs.dependi",
                 "mhutchie.git-graph",
-                "taichi.vscode-textlint"
+                "donjayamanne.githistory",
+                "mammothb.gnuplot",
+                "jock.svg"
             ]
         }
     },
